@@ -1,0 +1,15 @@
+server:
+  port: ${SERVER_PORT:8082}
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/shopmart_inventory?createDatabaseIfNotExist=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:CHANGE_ME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always

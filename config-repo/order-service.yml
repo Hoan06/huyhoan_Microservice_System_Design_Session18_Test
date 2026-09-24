@@ -1,0 +1,38 @@
+server:
+  port: ${SERVER_PORT:8081}
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/shopmart_order?createDatabaseIfNotExist=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:CHANGE_ME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,circuitbreakers,circuitbreakerevents
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+resilience4j:
+  retry:
+    instances:
+      inventory:
+        max-attempts: 1
+  circuitbreaker:
+    instances:
+      inventory:
+        sliding-window-size: 5
+        minimum-number-of-calls: 3
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 2
+feign:
+  circuitbreaker:
+    enabled: true

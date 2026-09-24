@@ -1,0 +1,2 @@
+rootProject.name = 'shopmart-microservices'
+include 'config-server', 'eureka-server', 'api-gateway', 'order-service', 'inventory-service', 'payment-service'

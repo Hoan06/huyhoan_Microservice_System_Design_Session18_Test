@@ -1,0 +1,1 @@
+// Root aggregator: mỗi microservice tự khai báo plugins và dependencies trong build.gradle riêng.
